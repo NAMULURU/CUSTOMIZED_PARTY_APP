@@ -1,0 +1,13 @@
+/target/
+/bin/
+/.settings/
+/.gradle/
+.classpath
+.factorypath
+.project
+/.mvn/
+/build/
+/src/main/js/node_modules/
+/src/main/js/build/
+/src/main/js/node_modules/
+/src/main/resources/static/static/
