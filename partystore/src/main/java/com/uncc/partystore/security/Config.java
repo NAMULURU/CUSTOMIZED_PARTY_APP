@@ -33,10 +33,10 @@ public class Config extends WebSecurityConfigurerAdapter{
 
 		httpSecurity.authorizeRequests()
 				.antMatchers("/css/**", "/images/**", "/img/**","/test/**").permitAll()
-				.anyRequest().authenticated().and().formLogin()
+				//.anyRequest().authenticated().and().formLogin()
 				//.loginPage("/login")
-				.defaultSuccessUrl("/homepage", true)
-				.permitAll()
+				//.defaultSuccessUrl("/homepage", true)
+				//.permitAll()
 				.and().csrf().disable();
 	}
 
