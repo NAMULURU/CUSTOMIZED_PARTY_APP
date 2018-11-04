@@ -16,6 +16,8 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
 import 'font-awesome/css/font-awesome.min.css';
+import Steps from './Steps.js';
+import TabbedView from './TabbedView.js';
 
 const drawerWidth = 260;
 
@@ -43,13 +45,16 @@ const styles = theme => ({
 class AppHome extends React.Component {
   constructor(props){
     super(props);
-    this.state = {selectedIndex:0};
+    this.state = {
+      selectedKey:"CAKE"
+    };
     this.handleListItemClick = this.handleListItemClick.bind(this);
   }
 
   handleListItemClick(e, index){
+    console.log(index);
     this.setState({
-        selectedIndex:index
+        selectedKey:index
     });
   }
 
@@ -74,45 +79,45 @@ class AppHome extends React.Component {
         >
           <div className={classes.toolbar} />
           <List>
-            <ListItem selected={this.state.selectedIndex === 0} onClick = {event => this.handleListItemClick(event, 0)} button key="CAKE">
+            <ListItem selected={this.state.selectedKey === "CAKE"} onClick = {event => this.handleListItemClick(event, "CAKE")} button key="CAKE">
               <ListItemIcon><i className="fa fa-birthday-cake fa-lg"></i></ListItemIcon>
               <ListItemText primary="Cake" />
             </ListItem>
-            <ListItem selected={this.state.selectedIndex === 1} onClick = {event => this.handleListItemClick(event, 1)} button key="TSHIRT">
+            <ListItem selected={this.state.selectedKey === "T_SHIRT"} onClick = {event => this.handleListItemClick(event, "T_SHIRT")} button key="T_SHIRT">
               <ListItemIcon><i className="fa fa-snowflake-o fa-lg"></i></ListItemIcon>
               <ListItemText primary="T Shirt" />
             </ListItem>
-            <ListItem button key="DRINK" selected={this.state.selectedIndex === 2} onClick = {event => this.handleListItemClick(event, 2)}>
+            <ListItem button key="DRINK" selected={this.state.selectedKey === "DRINK"} onClick = {event => this.handleListItemClick(event, "DRINK")}>
               <ListItemIcon><i className="fa fa-glass fa-lg"></i></ListItemIcon>
               <ListItemText primary="Drinks" />
             </ListItem>
-            <ListItem button key="OTHER_STUFF" selected={this.state.selectedIndex === 3} onClick = {event => this.handleListItemClick(event, 3)}>
+            <ListItem button key="OTHER_STUFF" selected={this.state.selectedKey === "OTHER_STUFF"} onClick = {event => this.handleListItemClick(event, "OTHER_STUFF")}>
               <ListItemIcon><i className="fa fa-cube fa-lg"></i></ListItemIcon>
               <ListItemText primary="Other Stuff" />
             </ListItem>
           </List>
           <Divider />
           <List>
-            <ListItem button key="CART" selected={this.state.selectedIndex === 5} onClick = {event => this.handleListItemClick(event, 5)}>
+            <ListItem button key="CART" selected={this.state.selectedKey === "CART"} onClick = {event => this.handleListItemClick(event, "CART")}>
               <ListItemIcon><i className="fa fa-shopping-cart fa-lg"></i></ListItemIcon>
               <ListItemText primary="CART" />
             </ListItem>
-            <ListItem button key="ORDER_HISTORY" selected={this.state.selectedIndex === 4} onClick = {event => this.handleListItemClick(event, 4)}>
+            <ListItem button key="ORDER_HISTORY" selected={this.state.selectedKey === "ORDER_HISTORY"} onClick = {event => this.handleListItemClick(event, "ORDER_HISTORY")}>
               <ListItemIcon><i className="fa fa-shopping-bag fa-lg"></i></ListItemIcon>
               <ListItemText primary="Order History" />
             </ListItem>
-            <ListItem button key="PROFILE" selected={this.state.selectedIndex === 6} onClick = {event => this.handleListItemClick(event, 6)}>
+            <ListItem button key="PROFILE" selected={this.state.selectedKey === "PROFILE"} onClick = {event => this.handleListItemClick(event, "PROFILE")}>
               <ListItemIcon><i className="fa fa-user-o fa-lg"></i></ListItemIcon>
               <ListItemText primary="Profile" />
             </ListItem>
           </List>
           <Divider />
           <List>
-            <ListItem button key="ABOUT_US" selected={this.state.selectedIndex === 7} onClick = {event => this.handleListItemClick(event, 7)}>
+            <ListItem button key="ABOUT_US" selected={this.state.selectedKey === "ABOUT_US"} onClick = {event => this.handleListItemClick(event, "ABOUT_US")}>
               <ListItemIcon><i className="fa fa-info fa-lg"></i></ListItemIcon>
               <ListItemText primary="About Us" />
             </ListItem>
-            <ListItem button key="CONTACT_US" selected={this.state.selectedIndex === 8} onClick = {event => this.handleListItemClick(event, 8)}>
+            <ListItem button key="CONTACT_US" selected={this.state.selectedKey === "CONTACT_US"} onClick = {event => this.handleListItemClick(event, "CONTACT_US")}>
               <ListItemIcon><i className="fa fa-phone fa-lg"></i></ListItemIcon>
               <ListItemText primary="Contact Us" />
             </ListItem>
@@ -120,9 +125,7 @@ class AppHome extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <Typography paragraph>
-            This is the main home page
-          </Typography>
+          <TabbedView selectedKey={this.state.selectedKey} />
         </main>
       </div>
     );
