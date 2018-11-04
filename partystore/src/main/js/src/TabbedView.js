@@ -11,6 +11,8 @@ import PersonPinIcon from '@material-ui/icons/PersonPin';
 import Steps from './Steps.js';
 import {Tab1} from './Tab1.js';
 import 'font-awesome/css/font-awesome.min.css';
+import {CakeDefaultView} from './CakeDefaultView.js';
+import {ShirtDefaultView} from './ShirtDefaultView.js';
 
 const styles = {
   root: {
@@ -62,7 +64,8 @@ class TabbedView extends React.Component {
             <Tab icon={<i class="fa fa-wrench fa-lg"></i>} label="Customize" />
           </Tabs>
         </Paper>
-        {this.state.value === 0 && this.props.selectedKey === "CAKE" ? <Tab1 /> : undefined}
+        {this.state.value === 0 && this.props.selectedKey === "CAKE" ? <CakeDefaultView/> : undefined}
+          {this.state.value === 0 && this.props.selectedKey === "T_SHIRT" ? <ShirtDefaultView/> : undefined}
         {this.state.value === 1 ? <Steps stepperInfo={this.state.stepperInfo[this.props.selectedKey]} /> : undefined}
       </div>
     );

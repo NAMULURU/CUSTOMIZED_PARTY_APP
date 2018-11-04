@@ -25,6 +25,7 @@ height:25px;
 /*width:22%; */
 }
 
+
 select{
 border-radius: 30px;
 text-align: center;
@@ -43,4 +44,33 @@ width: 15%;
 
 h1{
   font-size: 6vw;
+}
+div.content {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 20%;
+}
+
+div.content:hover {
+    border: 1px solid #777;
+}
+div.content img {
+    width: 100%;
+    height: auto;
+}
+.nextBtn {
+    background-color: #4CAF50;
+    color: white;
+	text-align: center;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width:15%;
+    opacity: 0.9;
+}
+
+.nextBtn:hover {
+    opacity: 1;
 }
