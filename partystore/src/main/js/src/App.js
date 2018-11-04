@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {Home} from './Home.js';
-import {Header} from './header.js';
 import {Register} from './Register.js';
+import AppHome from './AppHome.js';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
 class App extends Component {
@@ -12,9 +12,8 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <Route exact path="/home" component={Home} />
+            <Route exact path="/home" component={AppHome} />
             <Route exact path="/register" render={(props) => <Register {...props} isAuthed={true} />} />
-            <Route exact path="/about" component={Header} />
           </div>
         </Router>
       </div>

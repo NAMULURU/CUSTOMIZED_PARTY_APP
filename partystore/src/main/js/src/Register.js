@@ -88,6 +88,11 @@ export class Register extends React.Component{
         if(data.response === "USER_ID_EXISTS"){
           this.handleClickOpen();
         }
+
+        if(data.response === "SUCCESS"){
+          this.props.history.push('/about');
+        }
+
       });
 
   }
@@ -117,8 +122,8 @@ export class Register extends React.Component{
       }
 
     return(
-      <div class="App">
-        <div class="App-header">
+      <div class="Register-app">
+        <div class="Register-app-header">
         <h1>Sign Up Form</h1>
         <form onSubmit={this.handleSubmit} method="post">
           <label htmlFor="firstName">
