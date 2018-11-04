@@ -48,7 +48,7 @@ public class Home {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@RequestMapping(value = "/homepage")
+	@RequestMapping(value = "/xx/register")
 	public String runOptimizationResult(Model model, HttpSession session) throws JsonProcessingException {
 		return "index";
 	}
@@ -56,6 +56,7 @@ public class Home {
 	@RequestMapping(value = "/register-user", method = RequestMethod.POST)
 	@ResponseBody
 	@CrossOrigin("http://localhost:3000")
+	//@CrossOrigin("http://localhost:9090")
 	public HashMap<String, String> registerUser(@RequestBody Register user) {
 
 		UserDetails userDetails = new UserDetails();
@@ -102,6 +103,7 @@ public class Home {
 	@RequestMapping(value = "/geo-list", method = RequestMethod.GET)
 	@ResponseBody
 	@CrossOrigin("http://localhost:3000")
+	//@CrossOrigin("http://localhost:9090")
 	public HashMap<String, Set<String>> getGeography(){
 		
 		List<Geography> geographies = (List<Geography>) geographyRepo.findAll();
