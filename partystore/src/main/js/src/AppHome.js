@@ -14,10 +14,14 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 
 import 'font-awesome/css/font-awesome.min.css';
 import Steps from './Steps.js';
 import TabbedView from './TabbedView.js';
+import partyGif from './party.gif';
 
 const drawerWidth = 260;
 
@@ -40,6 +44,24 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
   },
   toolbar: theme.mixins.toolbar,
+
+
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
+
+  grow: {
+    flexGrow: 1,
+  },
+
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+
 });
 
 class AppHome extends React.Component {
@@ -64,10 +86,24 @@ class AppHome extends React.Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar>
+          <Toolbar style={{opacity:1,backgroundImage: `url(${partyGif})`}}>
             <Typography variant="h6" color="inherit" noWrap>
               Party Store
             </Typography>
+
+            <div className={classes.grow} />
+            <div style={{paddingRight:'2%'}} className={classes.sectionDesktop}>
+              <a><i color="inherit" style={{align:'center'}} className="fa fa-user fa-lg"></i></a>
+              <a>&nbsp; Siva Kumar Reddy</a>
+            </div>
+            <div style={{paddingRight:'7%'}} className={classes.sectionDesktop}>
+              <a href="#" style={{color:'white', textDecoration:'none'}}>
+                <i type="submit" style={{align:'center'}} className="fa fa-power-off fa-lg"></i>
+                &nbsp; Logout
+              </a>
+            </div>
+
+
           </Toolbar>
         </AppBar>
         <Drawer
@@ -125,7 +161,8 @@ class AppHome extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <TabbedView selectedKey={this.state.selectedKey} />
+          {['CAKE','T_SHIRT'].includes(this.state.selectedKey) ? <TabbedView selectedKey={this.state.selectedKey} /> : undefined}
+
         </main>
       </div>
     );
