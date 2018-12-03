@@ -23,6 +23,8 @@ import TshirtFont from './TshirtFont.js';
 import {TshirtDisplay} from './TshirtDisplay.js';
 import UploadTshirtImage from './UploadTshirtImage.js';
 
+
+
 const styles = {
   root: {
     flexGrow: 1,

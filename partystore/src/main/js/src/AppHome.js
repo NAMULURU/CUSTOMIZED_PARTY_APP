@@ -22,6 +22,8 @@ import Badge from '@material-ui/core/Badge';
 import 'font-awesome/css/font-awesome.min.css';
 import Steps from './Steps.js';
 import TabbedView from './TabbedView.js';
+import {DrinkDefaultView} from './DrinkDefaultView.js';
+import {OtherStuffView} from './OtherStuffView.js';
 import partyGif from './party.gif';
 
 const drawerWidth = 260;
