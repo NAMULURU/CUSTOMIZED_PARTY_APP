@@ -2,7 +2,6 @@ package com.uncc.partystore.controller;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.transform.ToListResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,13 +22,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.uncc.partystore.forms.Register;
 import com.uncc.partystore.models.Authorities;
+import com.uncc.partystore.models.DefaultCart;
 import com.uncc.partystore.models.Geography;
 import com.uncc.partystore.models.UserDetails;
 import com.uncc.partystore.models.Users;
 import com.uncc.partystore.repository.AuthoritiesRepo;
+import com.uncc.partystore.repository.DefaultCartInfo;
 import com.uncc.partystore.repository.GeographyRepo;
 import com.uncc.partystore.repository.UserDetailsRepo;
 import com.uncc.partystore.repository.UsersRepo;
@@ -52,6 +51,9 @@ public class Home {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	DefaultCartInfo defaultCartInfo;
 
 	@RequestMapping(value = {"/home", "/register"})
 	public String runOptimizationResult(Model model, HttpSession session) {
@@ -137,8 +139,9 @@ public class Home {
 	
 	@RequestMapping(value = "/logged-username", method = RequestMethod.GET)
 	@ResponseBody
-	@CrossOrigin(origins="http://127.0.0.1:9090")
-	//@CrossOrigin(origins="http://127.0.0.1:3000")
+	//@CrossOrigin(origins="http://127.0.0.1:9090")
+	@CrossOrigin(origins="http://127.0.0.1:3000")
+	//@CrossOrigin({"http://localhost:3000", "http://localhost:9090"})
 	public HashMap<String, String> getLoggedUserName(){
 		
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -159,4 +162,27 @@ public class Home {
 		return map;
 		
 	}
+	
+	@RequestMapping(value = "/add-to-cart-default", method = RequestMethod.POST)
+	@ResponseBody
+	//@CrossOrigin(origins="http://127.0.0.1:9090")
+	@CrossOrigin(origins="http://127.0.0.1:3000")
+	public HashMap<String, String> addToDefaultCart(@RequestBody DefaultCart defaultCart){
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String email = authentication.getName();
+		
+		defaultCart.setEmail("sivakumar.vayyeti@gmail.com");
+		defaultCartInfo.save(defaultCart);
+		
+		map.put("status", "success");
+		
+		
+		return map;
+		
+	}
+	
+	
 }

@@ -77,11 +77,12 @@ class AppHome extends React.Component {
     super(props);
     this.state = {
       selectedKey:"CAKE",
-      cartNumber: 0
+      cartNumber: 0,
     };
     this.handleListItemClick = this.handleListItemClick.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.changeCartNumber = this.changeCartNumber.bind(this);
+    this.handleDefaultCartItem  = this.handleDefaultCartItem.bind(this);
   }
 
   changeCartNumber(e){
@@ -100,6 +101,29 @@ class AppHome extends React.Component {
   handleLogout(e){
     this.props.history.push('/logout');
   }
+
+  handleDefaultCartItem(cartItemObj){
+
+    fetch('http://127.0.0.1:9090/add-to-cart-default', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(cartItemObj)
+    }).then(response => response.json())
+      .then(data => {
+        console.log(data.response);
+
+        if(data.status === "SUCCESS"){
+          this.props.history.push('/home');
+        }
+
+      });
+
+  }
+
+
 
   render(){
     const { classes } = this.props;
@@ -184,7 +208,8 @@ class AppHome extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {['CAKE','T_SHIRT', 'DRINK', 'OTHER_STUFF'].includes(this.state.selectedKey) ? <TabbedView onCartValueChange={this.changeCartNumber} selectedKey={this.state.selectedKey} /> : undefined}
+          {['CAKE','T_SHIRT', 'DRINK', 'OTHER_STUFF'].includes(this.state.selectedKey) ? <TabbedView onCartValueChange={this.changeCartNumber}
+          addDefaultCartItem={this.handleDefaultCartItem} selectedKey={this.state.selectedKey} /> : undefined}
 
         </main>
       </div>
