@@ -17,8 +17,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import {CakeDefaultView} from './CakeDefaultView.js';
 import {ShirtDefaultView} from './ShirtDefaultView.js';
 import {CakeDisplay} from './CakeDisplay.js';
-import {DrinkDefaultView} from './DrinkDefaultView.js';
-import {OtherStuffView} from './OtherStuffView.js';
+
 
 import {TshirtColor} from './TshirtColor.js';
 import TshirtFont from './TshirtFont.js';
@@ -131,8 +130,7 @@ class TabbedView extends React.Component {
         </Paper>
         {this.state.value === 0 && this.props.selectedKey === "CAKE" ? <CakeDefaultView onCartValueChange={this.props.onCartValueChange} /> : undefined}
         {this.state.value === 0 && this.props.selectedKey === "T_SHIRT" ? <ShirtDefaultView onCartValueChange={this.props.onCartValueChange} /> : undefined}
-        {this.state.value === 0 && this.props.selectedKey === "DRINK" ? <DrinkDefaultView onCartValueChange={this.props.onCartValueChange} /> : undefined}
-        {this.state.value === 0 && this.props.selectedKey === "OTHER_STUFF" ? <OtherStuffView onCartValueChange={this.props.onCartValueChange} /> : undefined}
+
         {this.state.value === 1 ? <Steps stepperInfo={this.state.stepperInfo[this.props.selectedKey]} onCartValueChange={this.props.onCartValueChange} /> : undefined}
         {this.state.value === 1 && this.props.selectedKey === "CAKE" ? <CakeDisplay image={this.state.displayCake} /> : undefined}
         {this.state.value === 1 && this.props.selectedKey === "T_SHIRT" ? <TshirtDisplay imageSize={this.state.imageSize} imagePath={this.state.imagePath} displayImage={this.state.displayTshirt} fontSize={this.state.fontSize} font={this.state.font} text={this.state.text} color={this.state.color} /> : undefined}
