@@ -21,6 +21,8 @@ import Button from '@material-ui/core/Button';
 import 'font-awesome/css/font-awesome.min.css';
 import Steps from './Steps.js';
 import TabbedView from './TabbedView.js';
+import {DrinkDefaultView} from './DrinkDefaultView.js';
+import {OtherStuffView} from './OtherStuffView.js';
 import partyGif from './party.gif';
 
 const drawerWidth = 260;
@@ -162,6 +164,8 @@ class AppHome extends React.Component {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           {['CAKE','T_SHIRT'].includes(this.state.selectedKey) ? <TabbedView selectedKey={this.state.selectedKey} /> : undefined}
+            {['DRINK'].includes(this.state.selectedKey) ? <DrinkDefaultView selectedKey={this.state.selectedKey} /> : undefined}
+            {['OTHER_STUFF'].includes(this.state.selectedKey) ? <OtherStuffView selectedKey={this.state.selectedKey} /> : undefined}
 
         </main>
       </div>
