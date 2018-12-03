@@ -17,6 +17,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
+import Badge from '@material-ui/core/Badge';
 
 import 'font-awesome/css/font-awesome.min.css';
 import Steps from './Steps.js';
@@ -62,15 +63,29 @@ const styles = theme => ({
     marginRight: 20,
   },
 
+  Badge: {
+    height: '19px',
+    widht: '28px',
+  },
+
 });
 
 class AppHome extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      selectedKey:"CAKE"
+      selectedKey:"CAKE",
+      cartNumber: 0
     };
     this.handleListItemClick = this.handleListItemClick.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+    this.changeCartNumber = this.changeCartNumber.bind(this);
+  }
+
+  changeCartNumber(e){
+      this.setState({
+        cartNumber: this.state.cartNumber + 1
+      });
   }
 
   handleListItemClick(e, index){
@@ -78,6 +93,10 @@ class AppHome extends React.Component {
     this.setState({
         selectedKey:index
     });
+  }
+
+  handleLogout(e){
+    this.props.history.push('/logout');
   }
 
   render(){
@@ -92,12 +111,12 @@ class AppHome extends React.Component {
             </Typography>
 
             <div className={classes.grow} />
-            <div style={{paddingRight:'2%'}} className={classes.sectionDesktop}>
+            <div style={{paddingRight:'4%'}} className={classes.sectionDesktop}>
               <a><i color="inherit" style={{align:'center'}} className="fa fa-user fa-lg"></i></a>
-              <a>&nbsp; Siva Kumar Reddy</a>
+              <a>&nbsp; {this.props.userName}</a>
             </div>
             <div style={{paddingRight:'7%'}} className={classes.sectionDesktop}>
-              <a href="#" style={{color:'white', textDecoration:'none'}}>
+              <a href="/logout" style={{color:'white', textDecoration:'none'}}>
                 <i type="submit" style={{align:'center'}} className="fa fa-power-off fa-lg"></i>
                 &nbsp; Logout
               </a>
@@ -135,7 +154,9 @@ class AppHome extends React.Component {
           <Divider />
           <List>
             <ListItem button key="CART" selected={this.state.selectedKey === "CART"} onClick = {event => this.handleListItemClick(event, "CART")}>
+              <Badge badgeContent={this.state.cartNumber} color="secondary">
               <ListItemIcon><i className="fa fa-shopping-cart fa-lg"></i></ListItemIcon>
+              </Badge>
               <ListItemText primary="CART" />
             </ListItem>
             <ListItem button key="ORDER_HISTORY" selected={this.state.selectedKey === "ORDER_HISTORY"} onClick = {event => this.handleListItemClick(event, "ORDER_HISTORY")}>
@@ -161,7 +182,7 @@ class AppHome extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {['CAKE','T_SHIRT'].includes(this.state.selectedKey) ? <TabbedView selectedKey={this.state.selectedKey} /> : undefined}
+          {['CAKE','T_SHIRT'].includes(this.state.selectedKey) ? <TabbedView onCartValueChange={this.changeCartNumber} selectedKey={this.state.selectedKey} /> : undefined}
 
         </main>
       </div>

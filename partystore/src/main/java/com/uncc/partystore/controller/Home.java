@@ -6,11 +6,16 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.transform.ToListResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -48,15 +53,30 @@ public class Home {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@RequestMapping(value = "/xx/register")
-	public String runOptimizationResult(Model model, HttpSession session) throws JsonProcessingException {
+	@RequestMapping(value = {"/home", "/register"})
+	public String runOptimizationResult(Model model, HttpSession session) {
 		return "index";
+	}
+	
+	@RequestMapping(value = "/login")
+	public String login() {
+		return "login";
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	@CrossOrigin(origins="http://127.0.0.1:9090")
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		return "redirect:/login";
+
 	}
 
 	@RequestMapping(value = "/register-user", method = RequestMethod.POST)
 	@ResponseBody
-	@CrossOrigin("http://localhost:3000")
-	//@CrossOrigin("http://localhost:9090")
+	@CrossOrigin({"http://localhost:3000", "http://localhost:9090"})
 	public HashMap<String, String> registerUser(@RequestBody Register user) {
 
 		UserDetails userDetails = new UserDetails();
@@ -102,8 +122,8 @@ public class Home {
 	
 	@RequestMapping(value = "/geo-list", method = RequestMethod.GET)
 	@ResponseBody
-	@CrossOrigin("http://localhost:3000")
-	//@CrossOrigin("http://localhost:9090")
+	@CrossOrigin(origins="http://127.0.0.1:9090")
+	//@CrossOrigin(origins="http://127.0.0.1:3000")
 	public HashMap<String, Set<String>> getGeography(){
 		
 		List<Geography> geographies = (List<Geography>) geographyRepo.findAll();
@@ -112,6 +132,31 @@ public class Home {
                 Collectors.groupingBy(Geography::getState, Collectors.mapping(Geography::getCity, Collectors.toSet())));
 		
 		return geoList;
+		
+	}
+	
+	@RequestMapping(value = "/logged-username", method = RequestMethod.GET)
+	@ResponseBody
+	@CrossOrigin(origins="http://127.0.0.1:9090")
+	//@CrossOrigin(origins="http://127.0.0.1:3000")
+	public HashMap<String, String> getLoggedUserName(){
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String email = authentication.getName();
+		
+		if(email.equals("anonymousUser")) {
+			map.put("userName", "anonymousUser");
+		}
+		
+		else {
+			String name = userDetailsRepo.getUserNameByEmial(email);
+			map.put("userName", name);
+			
+		}
+		
+		return map;
 		
 	}
 }
