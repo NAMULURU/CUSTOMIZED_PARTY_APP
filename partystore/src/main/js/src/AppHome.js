@@ -24,6 +24,7 @@ import Steps from './Steps.js';
 import TabbedView from './TabbedView.js';
 import {DrinkDefaultView} from './DrinkDefaultView.js';
 import {OtherStuffView} from './OtherStuffView.js';
+import {CartDefaultView} from './CartDefaultView.js';
 import partyGif from './party.gif';
 
 const drawerWidth = 260;
@@ -184,8 +185,10 @@ class AppHome extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {['CAKE','T_SHIRT', 'DRINK', 'OTHER_STUFF'].includes(this.state.selectedKey) ? <TabbedView onCartValueChange={this.changeCartNumber} selectedKey={this.state.selectedKey} /> : undefined}
-
+          {['CAKE','T_SHIRT'].includes(this.state.selectedKey) ? <TabbedView onCartValueChange={this.changeCartNumber} selectedKey={this.state.selectedKey} /> : undefined}
+{ ['DRINK'].includes(this.state.selectedKey) ? <DrinkDefaultView onCartValueChange={this.changeCartNumber} selectedKey={this.state.selectedKey} /> : undefined}
+{ ['OTHER_STUFF'].includes(this.state.selectedKey) ? <OtherStuffView onCartValueChange={this.changeCartNumber} selectedKey={this.state.selectedKey} /> : undefined}
+{ ['CART'].includes(this.state.selectedKey) ? <CartDefaultView onCartValueChange={this.changeCartNumber} selectedKey={this.state.selectedKey} /> : undefined}
         </main>
       </div>
     );
