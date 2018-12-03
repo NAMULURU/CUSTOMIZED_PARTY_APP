@@ -14,6 +14,8 @@ import 'font-awesome/css/font-awesome.min.css';
 import {CakeDefaultView} from './CakeDefaultView.js';
 import {ShirtDefaultView} from './ShirtDefaultView.js';
 
+
+
 const styles = {
   root: {
     flexGrow: 1,
@@ -66,7 +68,7 @@ class TabbedView extends React.Component {
         </Paper>
         {this.state.value === 0 && this.props.selectedKey === "CAKE" ? <CakeDefaultView/> : undefined}
           {this.state.value === 0 && this.props.selectedKey === "T_SHIRT" ? <ShirtDefaultView/> : undefined}
-        {this.state.value === 1 ? <Steps stepperInfo={this.state.stepperInfo[this.props.selectedKey]} /> : undefined}
+          {this.state.value === 1 ? <Steps stepperInfo={this.state.stepperInfo[this.props.selectedKey]} /> : undefined}
       </div>
     );
   }
