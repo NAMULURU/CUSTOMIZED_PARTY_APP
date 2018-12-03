@@ -27,7 +27,6 @@ export class TshirtDisplay extends React.Component{
 
     return (
       <div id="displayTshirt" style={root}>
-      <canvas id="canvasContainer">
         <div id="tshirt">
           {TshirtComponent[this.props.displayImage]}
         </div>
@@ -50,7 +49,6 @@ export class TshirtDisplay extends React.Component{
                 style={{fontFamily:this.props.font, fontSize:this.props.fontSize, width:this.props.imageSize, height:this.props.imageSize}} /> </p>
             </div>
         </Draggable>
-        </canvas>
       </div>
     );
   }
