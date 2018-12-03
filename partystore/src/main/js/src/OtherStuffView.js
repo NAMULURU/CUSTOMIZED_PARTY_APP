@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.css';
+
+
 export class OtherStuffView extends React.Component{
-
-
-
   render(){
 
     return (<div>

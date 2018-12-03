@@ -184,7 +184,7 @@ class AppHome extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {['CAKE','T_SHIRT'].includes(this.state.selectedKey) ? <TabbedView onCartValueChange={this.changeCartNumber} selectedKey={this.state.selectedKey} /> : undefined}
+          {['CAKE','T_SHIRT', 'DRINK', 'OTHER_STUFF'].includes(this.state.selectedKey) ? <TabbedView onCartValueChange={this.changeCartNumber} selectedKey={this.state.selectedKey} /> : undefined}
 
         </main>
       </div>

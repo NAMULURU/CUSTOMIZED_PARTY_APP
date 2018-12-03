@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
+
 export class DrinkDefaultView extends React.Component{
-
-
-
   render(){
 
     return (<div>
@@ -171,7 +169,7 @@ export class DrinkDefaultView extends React.Component{
         3% Potassium 92mg.
         12% Total Carbohydrates 36g.
         1% Dietary Fiber 0.3g.</p>
-  
+
             <b><p>Quantity:750ml  </p></b>
           </div>
           </div>

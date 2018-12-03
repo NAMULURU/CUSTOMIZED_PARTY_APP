@@ -23,8 +23,6 @@ import {BreadSelection} from './BreadSelection.js';
 import {CakeTopings} from './CakeTopings.js';
 import CakeDescription from './CakeDescription.js';
 
-import { fabric } from 'react-fabricjs';
-
 import html2canvas from 'html2canvas';
 
 const styles = theme => ({
@@ -92,10 +90,6 @@ class Steps extends React.Component {
       this.setState(state => ({
         openSnackBar: true
       }));
-
-      let canvas  = new fabric.Canvas('canvasContainer');
-      canvas.deactivateAll().renderAll();
-      console.log(canvas.toDataURL('png'));
 
       html2canvas(document.body, {allowTaint:false, profile:true}).then(canvas => {
         document.body.appendChild(canvas)
