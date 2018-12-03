@@ -37,10 +37,10 @@ public class Config extends WebSecurityConfigurerAdapter{
 
 		httpSecurity.authorizeRequests()
 				.antMatchers("/css/**", "/static/**", "/img/**", "/register-user/**", "/register/**", "/geo-list/**").permitAll()
-				.anyRequest().authenticated().and().formLogin()
-				.loginPage("/login")
-				.defaultSuccessUrl("/home", true)
-				.permitAll()
+				//.anyRequest().authenticated().and().formLogin()
+				//.loginPage("/login")
+				//.defaultSuccessUrl("/home", true)
+				//.permitAll()
 				//.successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
 				.and().exceptionHandling().authenticationEntryPoint(new AjaxAwareAuthenticationEntryPoint("/login"))
 				//.and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
