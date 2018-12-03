@@ -17,8 +17,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import {CakeDefaultView} from './CakeDefaultView.js';
 import {ShirtDefaultView} from './ShirtDefaultView.js';
 import {CakeDisplay} from './CakeDisplay.js';
-import {DrinkDefaultView} from './DrinkDefaultView.js';
-import {OtherStuffView} from './OtherStuffView.js';
+
 
 import {TshirtColor} from './TshirtColor.js';
 import TshirtFont from './TshirtFont.js';
@@ -140,10 +139,6 @@ class TabbedView extends React.Component {
         {this.state.value === 0 && this.props.selectedKey === "CAKE" ? <CakeDefaultView addDefaultCartItem={this.props.addDefaultCartItem} addToCartList={this.onItemAddedToCart}
           onCartValueChange={this.props.onCartValueChange} /> : undefined}
         {this.state.value === 0 && this.props.selectedKey === "T_SHIRT" ? <ShirtDefaultView addDefaultCartItem={this.props.addDefaultCartItem} addToCartList={this.onItemAddedToCart}
-          onCartValueChange={this.props.onCartValueChange} /> : undefined}
-        {this.state.value === 0 && this.props.selectedKey === "DRINK" ? <DrinkDefaultView addDefaultCartItem={this.props.addDefaultCartItem} addToCartList={this.onItemAddedToCart}
-          onCartValueChange={this.props.onCartValueChange} /> : undefined}
-        {this.state.value === 0 && this.props.selectedKey === "OTHER_STUFF" ? <OtherStuffView addDefaultCartItem={this.props.addDefaultCartItem} addToCartList={this.onItemAddedToCart}
           onCartValueChange={this.props.onCartValueChange} /> : undefined}
         {this.state.value === 1 ? <Steps addToCartList={this.onItemAddedToCart} stepperInfo={this.state.stepperInfo[this.props.selectedKey]}
           onCartValueChange={this.props.onCartValueChange} /> : undefined}
