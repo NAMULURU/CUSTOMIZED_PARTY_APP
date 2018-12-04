@@ -184,5 +184,23 @@ public class Home {
 		
 	}
 	
+	@RequestMapping(value = "/default-cart-items", method = RequestMethod.GET)
+	@ResponseBody
+	//@CrossOrigin(origins="http://127.0.0.1:9090")
+	@CrossOrigin(origins="http://127.0.0.1:3000")
+	public List<DefaultCart> getDefaultCartItems(){
+		
+		List<DefaultCart> defaultCartList;
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String email = authentication.getName();
+		
+		defaultCartList = (List<DefaultCart>) defaultCartInfo.findAll();
+		
+		
+		return defaultCartList;
+		
+	}
+	
 	
 }
