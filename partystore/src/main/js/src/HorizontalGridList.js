@@ -59,7 +59,11 @@ class HorizontalGridList extends React.Component{
 
   onCakeChanged(e){
     this.props.onCakeSelected(e.target.value);
-    
+    this.props.handleCustomcartItem({
+      name:'cakeBread',
+      value:e.target.value
+    });
+
     if(this.state.notifyDefaultCakeSelection){
       this.setState({
         notifyDefaultCakeSelection: false

@@ -92,8 +92,10 @@ class Steps extends React.Component {
       }));
 
       html2canvas(document.body, {allowTaint:false, profile:true}).then(canvas => {
-        document.body.appendChild(canvas)
+        //document.body.appendChild(canvas)
       });
+
+      this.props.insertCustomCartItem();
 
     }
 
@@ -109,6 +111,7 @@ class Steps extends React.Component {
   };
 
   handleReset = (e) => {
+    this.props.handleResetAction();
     this.setState({
       activeStep: 0,
     });

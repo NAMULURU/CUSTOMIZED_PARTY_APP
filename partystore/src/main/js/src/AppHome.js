@@ -79,11 +79,26 @@ class AppHome extends React.Component {
     this.state = {
       selectedKey:"CAKE",
       cartNumber: 0,
+      customCartItemObject: {
+        category:'',
+        cakeBread:'',
+        cakeToppings:'',
+        cakeDescription:'',
+        tshirtStyle:'',
+        tshirtColor:'',
+        tshirtFont:'',
+        tshirtText:'',
+        tshirtImage:'',
+        price:'45',
+      },
     };
     this.handleListItemClick = this.handleListItemClick.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.changeCartNumber = this.changeCartNumber.bind(this);
     this.handleDefaultCartItem  = this.handleDefaultCartItem.bind(this);
+    this.handleCustomcartItem = this.handleCustomcartItem.bind(this);
+    this.insertCustomCartItem = this.insertCustomCartItem.bind(this);
+    this.handleResetAction = this.handleResetAction.bind(this);
   }
 
   changeCartNumber(e){
@@ -102,6 +117,36 @@ class AppHome extends React.Component {
   handleLogout(e){
     this.props.history.push('/logout');
   }
+
+  handleCustomcartItem(obj){
+    let k = obj.name;
+    let y = this.state.customCartItemObject;
+    y[k] = obj.value;
+    this.setState({
+      customCartItemObject: y
+    });
+  }
+
+  insertCustomCartItem(){
+    console.log(this.state.customCartItemObject);
+    fetch('http://127.0.0.1:9090/add-to-cart-custom', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.state.customCartItemObject)
+    }).then(response => response.json())
+      .then(data => {
+        console.log(data.response);
+
+        if(data.status === "SUCCESS"){
+          //this.props.history.push('/home');
+        }
+
+      });
+  }
+
 
   handleDefaultCartItem(cartItemObj){
 
@@ -122,6 +167,24 @@ class AppHome extends React.Component {
 
       });
 
+  }
+
+  handleResetAction(){
+    var customObject =  {
+      category:'',
+      cakeBread:'',
+      cakeToppings:'',
+      cakeDescription:'',
+      tshirtStyle:'',
+      tshirtColor:'',
+      tshirtFont:'',
+      tshirtText:'',
+      tshirtImage:'',
+      price:'45',
+    };
+    this.setState({
+      customCartItemObject:customObject
+    });
   }
 
 
@@ -209,7 +272,7 @@ class AppHome extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {['CAKE','T_SHIRT'].includes(this.state.selectedKey) ? <TabbedView addDefaultCartItem={this.handleDefaultCartItem} onCartValueChange={this.changeCartNumber} selectedKey={this.state.selectedKey} /> : undefined}
+          {['CAKE','T_SHIRT'].includes(this.state.selectedKey) ? <TabbedView handleResetAction={this.handleResetAction} insertCustomCartItem={this.insertCustomCartItem} handleCustomcartItem={this.handleCustomcartItem} addDefaultCartItem={this.handleDefaultCartItem} onCartValueChange={this.changeCartNumber} selectedKey={this.state.selectedKey} /> : undefined}
           { ['DRINK'].includes(this.state.selectedKey) ? <DrinkDefaultView addDefaultCartItem={this.handleDefaultCartItem} onCartValueChange={this.changeCartNumber} selectedKey={this.state.selectedKey} /> : undefined}
           { ['OTHER_STUFF'].includes(this.state.selectedKey) ? <OtherStuffView addDefaultCartItem={this.handleDefaultCartItem} onCartValueChange={this.changeCartNumber} selectedKey={this.state.selectedKey} /> : undefined}
           { ['CART'].includes(this.state.selectedKey) ? <CartDefaultView /> : undefined}

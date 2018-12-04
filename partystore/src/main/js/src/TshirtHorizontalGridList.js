@@ -59,6 +59,7 @@ class TshirtHorizontalGridList extends React.Component{
 
   onTshirtChanged(e){
     this.props.onTshirtSelected(e.target.value);
+    this.props.handleCustomcartItem({name:'tshirtStyle', value:e.target.value});
 
     if(this.state.notifyDefaultTshirtSelection){
       this.setState({

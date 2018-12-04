@@ -5,12 +5,20 @@ import './App.css';
 export class ShirtDefaultView extends React.Component{
   constructor(props){
     super(props);
+    this.state={
+      size:'large'
+    }
     this.onAddToCart = this.onAddToCart.bind(this);
+    this.onSizeChanged = this.onSizeChanged.bind(this);
+  }
+
+  onSizeChanged(e){
+    this.setState({size: e.target.value});
   }
 
   onAddToCart(e, name, price){
       console.log("Add to Cart Button is Clicked");
-      let cartItem={email:'', category:'T_SHIRT', price:price, quantity:1, itemName:name};
+      let cartItem={email:'', category:'T_SHIRT', price:price, quantity:1, itemName:name, size:this.state.size};
       this.props.addDefaultCartItem(cartItem);
       this.props.onCartValueChange(e);
   }
@@ -29,7 +37,7 @@ export class ShirtDefaultView extends React.Component{
       <h4>RED T-SHIRT</h4>
       <p class="price">$19.99</p>
       <label for="Size"><b>Select Size :</b></label>
-        <select id="Size" name="Size">
+        <select onChange={this.onSizeChanged} id="Size" name="Size">
     <option value="large">L</option>
     <option value="medium">M</option>
     <option value="small">S</option>

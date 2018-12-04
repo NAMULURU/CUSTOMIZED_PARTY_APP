@@ -6,7 +6,7 @@ export class CakeTopings extends React.Component{
   render(){
     return(
       <div>
-        <ChipView onCakeSelected={this.props.onCakeSelected} />
+        <ChipView handleCustomcartItem={this.props.handleCustomcartItem} onCakeSelected={this.props.onCakeSelected} />
       </div>
     );
   }

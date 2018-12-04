@@ -24,11 +24,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.uncc.partystore.forms.Register;
 import com.uncc.partystore.models.Authorities;
+import com.uncc.partystore.models.CustomCart;
 import com.uncc.partystore.models.DefaultCart;
 import com.uncc.partystore.models.Geography;
 import com.uncc.partystore.models.UserDetails;
 import com.uncc.partystore.models.Users;
 import com.uncc.partystore.repository.AuthoritiesRepo;
+import com.uncc.partystore.repository.CustomCartInfo;
 import com.uncc.partystore.repository.DefaultCartInfo;
 import com.uncc.partystore.repository.GeographyRepo;
 import com.uncc.partystore.repository.UserDetailsRepo;
@@ -54,6 +56,9 @@ public class Home {
 	
 	@Autowired
 	DefaultCartInfo defaultCartInfo;
+	
+	@Autowired
+	CustomCartInfo customCartInfo;
 
 	@RequestMapping(value = {"/home", "/register"})
 	public String runOptimizationResult(Model model, HttpSession session) {
@@ -184,6 +189,32 @@ public class Home {
 		
 	}
 	
+	@RequestMapping(value = "/add-to-cart-custom", method = RequestMethod.POST)
+	@ResponseBody
+	//@CrossOrigin(origins="http://127.0.0.1:9090")
+	@CrossOrigin(origins="http://127.0.0.1:3000")
+	public HashMap<String, String> addToCustomCart(@RequestBody CustomCart customCart){
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String email = authentication.getName();
+		
+		if(customCart.getTshirtFont() == null || customCart.getTshirtFont().equals(""))
+			customCart.setCategory("CAKE");
+		else
+			customCart.setCategory("TSHIRT");
+		
+		customCart.setEmail("sivakumar.vayyeti@gmail.com");
+		customCartInfo.save(customCart);
+		
+		map.put("status", "success");
+		
+		
+		return map;
+		
+	}
+	
 	@RequestMapping(value = "/default-cart-items", method = RequestMethod.GET)
 	@ResponseBody
 	//@CrossOrigin(origins="http://127.0.0.1:9090")
@@ -197,6 +228,23 @@ public class Home {
 		
 		defaultCartList = (List<DefaultCart>) defaultCartInfo.findAll();
 		
+		
+		return defaultCartList;
+		
+	}
+	
+	@RequestMapping(value = "/custom-cart-items", method = RequestMethod.GET)
+	@ResponseBody
+	//@CrossOrigin(origins="http://127.0.0.1:9090")
+	@CrossOrigin(origins="http://127.0.0.1:3000")
+	public List<CustomCart> getCustomCartItems(){
+		
+		List<CustomCart> defaultCartList;
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String email = authentication.getName();
+		
+		defaultCartList = (List<CustomCart>) customCartInfo.findAll();
 		
 		return defaultCartList;
 		

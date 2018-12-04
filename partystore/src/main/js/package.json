@@ -27,7 +27,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && copy build\\index.html ..\\resources\\templates\\ && copy build\\static\\css  ..\\resources\\static\\static\\css && copy build\\static\\js  ..\\resources\\static\\static\\js && copy build\\static\\media  ..\\resources\\static\\static\\media",
+    "build": "react-scripts build && copy build\\index.html ..\\resources\\templates\\ && copy build\\static\\css  ..\\resources\\static\\static\\css && copy build\\static\\js  ..\\resources\\static\\static\\js && copy build\\static\\media  ..\\resources\\static\\static\\media && copy build\\img ..\\resources\\static\\img && copy build\\img\\images ..\\resources\\static\\img\\images",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
