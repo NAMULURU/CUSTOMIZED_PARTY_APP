@@ -3,6 +3,18 @@ import './App.css';
 
 
 export class OtherStuffView extends React.Component{
+  constructor(props){
+    super(props);
+    this.onAddToCart = this.onAddToCart.bind(this);
+  }
+
+  onAddToCart(e, name, price){
+      console.log("Add to Cart Button is Clicked");
+      let cartItem={email:'', category:'OTHER_STUFF', price:price, quantity:1, itemName:name};
+      this.props.addDefaultCartItem(cartItem);
+      this.props.onCartValueChange(e);
+  }
+
   render(){
 
     return (<div>
@@ -16,7 +28,7 @@ export class OtherStuffView extends React.Component{
       <img src={require('./images/hanging_fans.jpg')} alt="cakes" style={{width:'100%'}}/>
       <h4>Hanging Fans</h4>
       <p class="price">$12.99</p>
-        <p><button>ADD TO CART</button></p>
+          <p><button onClick = {e => this.onAddToCart(e, "hanging_fans.jpg", 12.99)}>ADD TO CART</button></p>
         </div>
           <div class="flip-box-back">
           <h4>Hanging Fans</h4>
@@ -41,7 +53,7 @@ export class OtherStuffView extends React.Component{
       <img src={require('./images/ballons.jpg')} alt="cakes" style={{width:'100%'}}/>
       <h4>Standard Color Balloons</h4>
       <p class="price">$16.99</p>
-        <p><button>ADD TO CART</button></p>
+        <p><button onClick = {e => this.onAddToCart(e, "ballons.jpg", 16.99)}>ADD TO CART</button></p>
         </div>
           <div class="flip-box-back">
           <h4>Standard Color Balloons</h4>
@@ -66,7 +78,7 @@ export class OtherStuffView extends React.Component{
       <img src={require('./images/banners.jpg')}alt="cakes" style= {{width:'100%'}}/>
       <h4>Banners and Penants</h4>
       <p class="price">$9.49</p>
-        <p><button>ADD TO CART</button></p>
+        <p><button onClick = {e => this.onAddToCart(e, "banners.jpg", 9.49)}>ADD TO CART</button></p>
         </div>
           <div class="flip-box-back">
           <h4>Banners and Penants</h4>
@@ -90,7 +102,7 @@ export class OtherStuffView extends React.Component{
       <img src={require('./images/chocolates.jpg')} alt="cakes" style={{width:'100%'}}/>
       <h4>Chocolates and Candies</h4>
       <p class="price">$13.99</p>
-        <p><button>ADD TO CART</button></p>
+      <p><button onClick = {e => this.onAddToCart(e, "chocolates.jpg", 13.99)}>ADD TO CART</button></p>
         </div>
           <div class="flip-box-back">
           <h4>Chocolates and Candies</h4>
@@ -116,7 +128,7 @@ export class OtherStuffView extends React.Component{
       <img src={require('./images/party_led.jpg')} alt="cakes" style={{width:'100%'}}/>
       <h4>Party LED Lights</h4>
       <p class="price">$9.99</p>
-        <p><button>ADD TO CART</button></p>
+      <p><button onClick = {e => this.onAddToCart(e, "party_led.jpg", 9.99)}>ADD TO CART</button></p>
         </div>
           <div class="flip-box-back">
           <h4>Party LED Lights</h4>
@@ -142,7 +154,7 @@ export class OtherStuffView extends React.Component{
       <img src={require('./images/party_table_set.jpg')} alt="cakes" style={{width:'100%'}}/>
       <h4>Party Table Ware Set</h4>
       <p class="price">$7.99</p>
-        <p><button>ADD TO CART</button></p>
+      <p><button onClick = {e => this.onAddToCart(e, "party_table_set.jpg", 7.99)}>ADD TO CART</button></p>
         </div>
           <div class="flip-box-back">
           <h4>Party Table Ware Set</h4>

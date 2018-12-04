@@ -45,20 +45,35 @@ export class CartDefaultView extends React.Component{
 
   {dataset.map( item => (
     <div>
+    <table>
+    <tr>
+   <th><b>Item</b></th>
+   <th><b>ItemName</b></th>
+   <th><b>Quantity</b></th>
+   <th><b>Price</b></th>
+ </tr>
+    <tr>
+    <td>
     <div class="image">
-          <img src={'/img/images/'+item.itemName} width="150" height="100" alt="" />
+          <img src={'/img/images/'+item.itemName} width="10" height="10"/>
     </div>
-
+</td>
+<td>
     <div class="description">
       <span>{item.itemName}</span>
-      <span></span>
-      <span>subtitle</span>
     </div>
-
+</td>
+<td>
     <div class="quantity">
     <input type="text" name="name" value={item.quantity}></input>
     </div>
+</td>
+<td>
     <div class="total-price">{item.price}</div>
+
+    </td>
+      </tr>
+    </table>
     </div>
   ))}
   </div>
