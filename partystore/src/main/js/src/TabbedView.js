@@ -41,6 +41,7 @@ class TabbedView extends React.Component {
       displayTshirt:"",
       value: 0,
       text: '',
+      cartList:[],
       imageSize:0,
       imagePath:undefined,
       font: 'Varela Round',
@@ -67,6 +68,7 @@ class TabbedView extends React.Component {
     this.setImagePath = this.setImagePath.bind(this);
     this.setFontSize = this.setFontSize.bind(this);
     this.setImageSize = this.setImageSize.bind(this);
+    this.onItemAddedToCart = this.onItemAddedToCart.bind(this);
 
   }
 
@@ -112,6 +114,12 @@ class TabbedView extends React.Component {
     this.setState({imageSize: imageSizeSelected});
   }
 
+  onItemAddedToCart = cartItem => {
+    let list = this.state.cartList;
+    list.push(cartItem);
+    this.setState({cartList: list});
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -128,12 +136,16 @@ class TabbedView extends React.Component {
             <Tab icon={<i class="fa fa-wrench fa-lg"></i>} label="Customize" />
           </Tabs>
         </Paper>
-        {this.state.value === 0 && this.props.selectedKey === "CAKE" ? <CakeDefaultView onCartValueChange={this.props.onCartValueChange} /> : undefined}
-        {this.state.value === 0 && this.props.selectedKey === "T_SHIRT" ? <ShirtDefaultView onCartValueChange={this.props.onCartValueChange} /> : undefined}
-
-        {this.state.value === 1 ? <Steps stepperInfo={this.state.stepperInfo[this.props.selectedKey]} onCartValueChange={this.props.onCartValueChange} /> : undefined}
+        {this.state.value === 0 && this.props.selectedKey === "CAKE" ? <CakeDefaultView addDefaultCartItem={this.props.addDefaultCartItem} addToCartList={this.onItemAddedToCart}
+          onCartValueChange={this.props.onCartValueChange} /> : undefined}
+        {this.state.value === 0 && this.props.selectedKey === "T_SHIRT" ? <ShirtDefaultView addDefaultCartItem={this.props.addDefaultCartItem} addToCartList={this.onItemAddedToCart}
+          onCartValueChange={this.props.onCartValueChange} /> : undefined}
+        {this.state.value === 1 ? <Steps addToCartList={this.onItemAddedToCart} stepperInfo={this.state.stepperInfo[this.props.selectedKey]}
+          onCartValueChange={this.props.onCartValueChange} /> : undefined}
         {this.state.value === 1 && this.props.selectedKey === "CAKE" ? <CakeDisplay image={this.state.displayCake} /> : undefined}
-        {this.state.value === 1 && this.props.selectedKey === "T_SHIRT" ? <TshirtDisplay imageSize={this.state.imageSize} imagePath={this.state.imagePath} displayImage={this.state.displayTshirt} fontSize={this.state.fontSize} font={this.state.font} text={this.state.text} color={this.state.color} /> : undefined}
+        {this.state.value === 1 && this.props.selectedKey === "T_SHIRT" ? <TshirtDisplay imageSize={this.state.imageSize} imagePath={this.state.imagePath}
+          displayImage={this.state.displayTshirt} fontSize={this.state.fontSize}
+          font={this.state.font} text={this.state.text} color={this.state.color} /> : undefined}
       </div>
     );
   }
