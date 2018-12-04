@@ -3,6 +3,17 @@ import './App.css';
 
 
 export class ShirtDefaultView extends React.Component{
+  constructor(props){
+    super(props);
+    this.onAddToCart = this.onAddToCart.bind(this);
+  }
+
+  onAddToCart(e, name, price){
+      console.log("Add to Cart Button is Clicked");
+      let cartItem={email:'', category:'T_SHIRT', price:price, quantity:1, itemName:name};
+      this.props.addDefaultCartItem(cartItem);
+      this.props.onCartValueChange(e);
+  }
 
   render(){
 
@@ -24,7 +35,7 @@ export class ShirtDefaultView extends React.Component{
     <option value="small">S</option>
     <option value="xtralarge">XL</option>
   </select>
-        <p><button>ADD TO CART</button></p>
+        <p><button onClick = {e => this.onAddToCart(e, "redshirt.jpg", 19.99)}>ADD TO CART</button></p>
   </div>
   <div class="flip-box-back">
   <h4>RED T-SHIRT</h4>
@@ -52,7 +63,7 @@ export class ShirtDefaultView extends React.Component{
     <option value="small">S</option>
     <option value="xtralarge">XL</option>
   </select>
-        <p><button>ADD TO CART</button></p>
+        <p><button onClick = {e => this.onAddToCart(e, "whiteshirt.jpg", 19.99)}>ADD TO CART</button></p>
             </div>
         <div class="flip-box-back">
         <h4>WHITE T-SHIRT</h4>
@@ -80,7 +91,7 @@ export class ShirtDefaultView extends React.Component{
     <option value="small">S</option>
     <option value="xtralarge">XL</option>
   </select>
-        <p><button>ADD TO CART</button></p>
+      <p><button onClick = {e => this.onAddToCart(e, "greenshirt.jpg", 19.99)}>ADD TO CART</button></p>
 
         </div>
         <div class="flip-box-back">
@@ -109,7 +120,7 @@ export class ShirtDefaultView extends React.Component{
     <option value="small">S</option>
     <option value="xtralarge">XL</option>
   </select>
-        <p><button>ADD TO CART</button></p>
+      <p><button onClick = {e => this.onAddToCart(e, "blackshirt.jpg", 19.99)}>ADD TO CART</button></p>
             </div>
         <div class="flip-box-back">
         <h4>BLACK T-SHIRT</h4>
@@ -137,7 +148,7 @@ export class ShirtDefaultView extends React.Component{
   <option value="small">S</option>
   <option value="xtralarge">XL</option>
 </select>
-        <p><button>ADD TO CART</button></p>
+        <p><button onClick = {e => this.onAddToCart(e, "skyblueshirt.png", 19.99)}>ADD TO CART</button></p>
         </div>
         <div class="flip-box-back">
         <h4>BLUE T-SHIRT</h4>
@@ -165,7 +176,7 @@ export class ShirtDefaultView extends React.Component{
       <option value="small">S</option>
       <option value="xtralarge">XL</option>
       </select>
-        <p><button>ADD TO CART</button></p>
+        <p><button onClick = {e => this.onAddToCart(e, "yellowshirt.jpg", 19.99)}>ADD TO CART</button></p>
               </div>
         <div class="flip-box-back">
         <h4>YELLOW T-SHIRT</h4>

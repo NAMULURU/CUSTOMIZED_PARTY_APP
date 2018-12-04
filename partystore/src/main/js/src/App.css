@@ -195,21 +195,9 @@ div.content img {
 /*
   Cursor: pointer;
 }*/
-.delete-btn {
-  width: 18px;
-  height: 17px;
-  background: url(&quot;delete-icn.svg&quot;) no-repeat center;
-}
 
-.like-btn {
-  position: absolute;
-  top: 9px;
-  left: 15px;
-  width: 60px;
-  height: 60px;
-  background-size: 2900%;
-  background-repeat: no-repeat;
-}
+
+
 .is-active {
   animation-name: animate;
   animation-duration: .8s;
@@ -224,7 +212,7 @@ div.content img {
   100% { background-position: right; }
 }
 .image {
-  margin-right: 5px;
+  margin-right: 1px;
 }
 
 .description {
@@ -262,20 +250,6 @@ div.content img {
   font-weight: 300;
 }
 
-button[class*=btn] {
-  width: 30px;
-  height: 30px;
-  background-color: #E1E8EE;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-}
-.minus-btn img {
-  margin-bottom: 3px;
-}
-.plus-btn img {
-  margin-top: 2px;
-}
 
 button:focus,
 input:focus {
@@ -289,7 +263,7 @@ input:focus {
   color: #43484D;
   font-weight: 300;
 }
-@media (max-width: 800px) {
+@media (max-width: 5000px) {
   .shopping-cart {
     width: 100%;
     height: auto;
@@ -301,17 +275,32 @@ input:focus {
     justify-content: center;
   }
   .image img {
-    width: 50%;
+    width: 100%;
+    height:100%;
   }
   .image,
   .quantity,
   .description {
-    width: 100%;
+    width: 70%;
     text-align: center;
-    margin: 6px 0;
+    margin: 5px 0;
   }
-  .buttons {
-    margin-right: 20px;
-  }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    width: 30%;
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
 }
 /** cart page emd naveen**/
