@@ -3,50 +3,65 @@ import './App.css';
 
 export class CartDefaultView extends React.Component{
 
+  constructor(props){
+    super(props);
+    this.state={
+      cartData:[]
+    }
+    this.getDefaultCartData = this.getDefaultCartData.bind(this);
+  }
+
+  componentDidMount(){
+    this.getDefaultCartData();
+  }
+
+  getDefaultCartData(){
+    fetch('http://127.0.0.1:9090/default-cart-items', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }
+    }).then(response => response.json())
+      .then(data => {
+        console.log(data);
+        this.setState({
+          cartData: data,
+        });
+      });
+  }
+
 
   render(){
 
-    return (<div class="shopping-cart">
+    let dataset = this.state.cartData;
+
+    return (
+      <div class="shopping-cart">
 
   <div class="title">
-    Shopping Cart
+    Default Shopping Cart
   </div>
 
-
-  <div class="item">
-    <div class="buttons">
-      <span class="delete-btn"></span>
-      <span class="like-btn"></span>
-    </div>
-
+  {dataset.map( item => (
+    <div>
     <div class="image">
-          <img src={require('./images/double_dog_dare_merlot.png')}width="150" height="100" alt="" />
+          <img src={'/img/images/'+item.itemName} width="150" height="100" alt="" />
     </div>
 
     <div class="description">
-      <span>ITEM name</span>
+      <span>{item.itemName}</span>
       <span></span>
       <span>subtitle</span>
     </div>
 
     <div class="quantity">
-    <button class="minus-btn" type="button" name="button">
-      <img src={require('./images/minus.svg')} alt="" />
-    </button>
-    <input type="text" name="name" value="1"></input>
-      <button class="plus-btn" type="button" name="button">
-        <img src={require('./images/plus.svg')}alt="" />
-      </button>
-
-
+    <input type="text" name="name" value={item.quantity}></input>
     </div>
-
-    <div class="total-price"> PRICE</div>
+    <div class="total-price">{item.price}</div>
+    </div>
+  ))}
   </div>
-  </div>
-
-
-
 );
 }
 }
