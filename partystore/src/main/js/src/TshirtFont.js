@@ -39,14 +39,26 @@ class TshirtFont extends React.Component{
 
   onKeyListener(e){
     this.props.onTshirtTextChanged(e.target.value);
+    this.props.handleCustomcartItem({
+      name:'tshirtText',
+      value:e.target.value
+    });
   }
 
   onFontChangeListener(font){
     this.props.onTshirtFontChanged(font);
+    this.props.handleCustomcartItem({
+      name:'tshirtFont',
+      value:font
+    });
   }
 
   handleSliderChange(event, sliderValue){
     this.props.onFontSizeChanged(sliderValue);
+    this.props.handleCustomcartItem({
+      name:'tshirtFontSize',
+      value:sliderValue
+    });
     this.setState({textSize: sliderValue});
   }
 

@@ -20,6 +20,13 @@ class CakeDescription extends React.Component{
     this.state = {
 
     };
+
+    this.handleDescription = this.handleDescription.bind(this);
+
+  }
+
+  handleDescription(e){
+    this.props.handleCustomcartItem({name:'cakeDescription', value:e.target.value});
   }
 
   render(){
@@ -29,6 +36,7 @@ class CakeDescription extends React.Component{
     return(
       <div style={{marginTop:'10px'}}>
       <TextField
+        onChange={this.handleDescription}
         id="outlined-full-width"
         label="Decoration Text"
         style={{ margin: 8 }}

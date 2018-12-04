@@ -6,7 +6,7 @@ export class BreadSelection extends React.Component{
   render(){
     return(
       <div>
-        <HorizontalGridList onCakeSelected={this.props.onCakeSelected}/>
+        <HorizontalGridList handleCustomcartItem={this.props.handleCustomcartItem} onCakeSelected={this.props.onCakeSelected}/>
       </div>
     );
   }

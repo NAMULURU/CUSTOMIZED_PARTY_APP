@@ -49,14 +49,14 @@ class TabbedView extends React.Component {
       color:'none',
       stepperInfo: {
         "CAKE": {
-          'Select Bread of Cake': <BreadSelection onCakeSelected={this.setDisplayCake} />,
-          'Select Type of Toppings': <CakeTopings onCakeSelected={this.setDisplayCake} />,
-          'Select Decoration Text': <CakeDescription />
+          'Select Bread of Cake': <BreadSelection handleCustomcartItem={this.props.handleCustomcartItem} onCakeSelected={this.setDisplayCake} />,
+          'Select Type of Toppings': <CakeTopings handleCustomcartItem={this.props.handleCustomcartItem} onCakeSelected={this.setDisplayCake} />,
+          'Select Decoration Text': <CakeDescription handleCustomcartItem={this.props.handleCustomcartItem} />
         },
         "T_SHIRT":{
-          "Select T-shirt Material": <TshirtColor onTshirtSelected={this.setDisplayTshirt} onColorSelected={this.setTshirtcolor} />,
-          "Write Color, Text & Font": <TshirtFont onFontSizeChanged={this.setFontSize} onTshirtFontChanged={this.setTshirtFont} onTshirtTextChanged={this.setTshirtText} />,
-          "Select Images/Upload": <UploadTshirtImage onImageSizeChanged={this.setImageSize} onTshirtImageSelected={this.setImagePath} />
+          "Select T-shirt Material": <TshirtColor handleCustomcartItem={this.props.handleCustomcartItem} onTshirtSelected={this.setDisplayTshirt} onColorSelected={this.setTshirtcolor} />,
+          "Write Color, Text & Font": <TshirtFont handleCustomcartItem={this.props.handleCustomcartItem} onFontSizeChanged={this.setFontSize} onTshirtFontChanged={this.setTshirtFont} onTshirtTextChanged={this.setTshirtText} />,
+          "Select Images/Upload": <UploadTshirtImage handleCustomcartItem={this.props.handleCustomcartItem} onImageSizeChanged={this.setImageSize} onTshirtImageSelected={this.setImagePath} />
       }
     }
     };
@@ -140,7 +140,7 @@ class TabbedView extends React.Component {
           onCartValueChange={this.props.onCartValueChange} /> : undefined}
         {this.state.value === 0 && this.props.selectedKey === "T_SHIRT" ? <ShirtDefaultView addDefaultCartItem={this.props.addDefaultCartItem} addToCartList={this.onItemAddedToCart}
           onCartValueChange={this.props.onCartValueChange} /> : undefined}
-        {this.state.value === 1 ? <Steps addToCartList={this.onItemAddedToCart} stepperInfo={this.state.stepperInfo[this.props.selectedKey]}
+        {this.state.value === 1 ? <Steps handleResetAction={this.props.handleResetAction} insertCustomCartItem={this.props.insertCustomCartItem} handleCustomcartItem={this.props.handleCustomcartItem} addToCartList={this.onItemAddedToCart} stepperInfo={this.state.stepperInfo[this.props.selectedKey]}
           onCartValueChange={this.props.onCartValueChange} /> : undefined}
         {this.state.value === 1 && this.props.selectedKey === "CAKE" ? <CakeDisplay image={this.state.displayCake} /> : undefined}
         {this.state.value === 1 && this.props.selectedKey === "T_SHIRT" ? <TshirtDisplay imageSize={this.state.imageSize} imagePath={this.state.imagePath}

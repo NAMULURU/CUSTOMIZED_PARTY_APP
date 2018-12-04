@@ -20,6 +20,7 @@ public class DefaultCart {
 	int price;
 	@Column(name = "item_name")
 	String itemName;
+	String size;
 
 	public DefaultCart() {
 	}
@@ -70,6 +71,14 @@ public class DefaultCart {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
 	}
 
 }

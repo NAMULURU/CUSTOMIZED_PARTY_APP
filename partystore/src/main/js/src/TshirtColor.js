@@ -24,6 +24,10 @@ export class TshirtColor extends React.Component{
 
   handleColorChange(color){
     this.props.onColorSelected(color.hex);
+    this.props.handleCustomcartItem({
+      name:'tshirtColor',
+      value:color.hex
+    });
     this.setState({currentColor: color.hex});
   }
 
@@ -31,7 +35,7 @@ export class TshirtColor extends React.Component{
 
     return(
       <div style={root}>
-        <TshirtHorizontalGridList onTshirtSelected={this.props.onTshirtSelected} />
+        <TshirtHorizontalGridList handleCustomcartItem={this.props.handleCustomcartItem} onTshirtSelected={this.props.onTshirtSelected} />
         <CirclePicker color={ this.state.currentColor } onChangeComplete={this.handleColorChange} />
       </div>
     );

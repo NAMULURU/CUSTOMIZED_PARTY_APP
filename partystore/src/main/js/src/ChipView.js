@@ -49,6 +49,14 @@ class ChipView extends React.Component {
     }
     x[key] = k;
 
+    let toppings = "";
+
+    x.map(item => {if(item.isPrimary) {toppings = toppings + ' ' +item.label}});
+    this.props.handleCustomcartItem({
+      name:'cakeToppings',
+      value:toppings
+    });
+
     this.setState({
       chipData: x
     });
