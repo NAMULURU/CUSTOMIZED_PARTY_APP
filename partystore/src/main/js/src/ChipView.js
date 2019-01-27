@@ -26,7 +26,7 @@ class ChipView extends React.Component {
       selectedChips:['jQuery', 'React'],
       isPrimary:true,
       chipData: [
-        { key: 0, label: 'Vanila', isPrimary:false},
+        { key: 0, label: 'Vanilla', isPrimary:true},
         { key: 1, label: 'Strawbrerry', isPrimary:false},
         { key: 2, label: 'Chocolate', isPrimary:false},
         { key: 3, label: 'Mango', isPrimary:false},
@@ -61,12 +61,16 @@ class ChipView extends React.Component {
       chipData: x
     });
 
-    this.onCakeChanged('');
+    this.onCakeChanged(toppings);
 
   }
 
-  onCakeChanged(cakeName){
-    this.props.onCakeSelected('angelfoodcake');
+  componentDidMount(){
+    this.props.onCakeSelected('vanilla');
+  }
+
+  onCakeChanged(toppings){
+    this.props.onCakeSelected('vanillastrawberry');
   }
 
   render() {

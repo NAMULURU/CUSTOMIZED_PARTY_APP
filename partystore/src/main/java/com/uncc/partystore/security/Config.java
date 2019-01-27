@@ -36,7 +36,7 @@ public class Config extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 
 		httpSecurity.authorizeRequests()
-				.antMatchers("/css/**", "/static/**", "/img/**", "/register-user/**", "/register/**", "/geo-list/**").permitAll()
+				.antMatchers("/css/**", "/static/**", "/img/**", "/register-user/**", "/register/**", "/geo-list/**", "/places-list/**").permitAll()
 				.anyRequest().authenticated().and().formLogin()
 				.loginPage("/login")
 				.defaultSuccessUrl("/home", true)

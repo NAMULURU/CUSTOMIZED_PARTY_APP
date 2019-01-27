@@ -89,7 +89,7 @@ export class Register extends React.Component{
         }
 
         if(data.response === "SUCCESS"){
-          this.props.history.push('/home');
+          this.props.history.push('/login');
         }
 
       });

@@ -36,6 +36,10 @@ import com.uncc.partystore.repository.GeographyRepo;
 import com.uncc.partystore.repository.UserDetailsRepo;
 import com.uncc.partystore.repository.UsersRepo;
 
+import net.minidev.json.JSONObject;
+import net.minidev.json.parser.JSONParser;
+import net.minidev.json.parser.ParseException;
+
 @Controller
 public class Home {
 
@@ -179,7 +183,7 @@ public class Home {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String email = authentication.getName();
 		
-		defaultCart.setEmail("sivakumar.vayyeti@gmail.com");
+		defaultCart.setEmail(email);
 		defaultCartInfo.save(defaultCart);
 		
 		map.put("status", "success");
@@ -205,7 +209,7 @@ public class Home {
 		else
 			customCart.setCategory("TSHIRT");
 		
-		customCart.setEmail("sivakumar.vayyeti@gmail.com");
+		customCart.setEmail(email);
 		customCartInfo.save(customCart);
 		
 		map.put("status", "success");
@@ -226,7 +230,7 @@ public class Home {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String email = authentication.getName();
 		
-		defaultCartList = (List<DefaultCart>) defaultCartInfo.findAll();
+		defaultCartList = (List<DefaultCart>) defaultCartInfo.getDefaultCartInfoByEmail(email);
 		
 		
 		return defaultCartList;
@@ -244,9 +248,20 @@ public class Home {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String email = authentication.getName();
 		
-		defaultCartList = (List<CustomCart>) customCartInfo.findAll();
+		defaultCartList = (List<CustomCart>) customCartInfo.getCustomCartInfoByEmail(email);
 		
 		return defaultCartList;
+		
+	}
+	
+	@RequestMapping("/places-list")
+	@ResponseBody
+	public JSONObject getPlacesList() throws ParseException {
+		
+		JSONParser parser = new JSONParser();
+		JSONObject json = (JSONObject) parser.parse(MADString.placesData);
+		
+		return json;
 		
 	}
 	
