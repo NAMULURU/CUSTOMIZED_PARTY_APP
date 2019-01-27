@@ -29,21 +29,21 @@ const styles = theme => ({
 });
 
 const tileData = [
+  {
+    img: './img/plain.jpg',
+    title: 'Italian Bread',
+    author: 'plain',
+  },
    {
-     img: './img/vanillacake.jpg',
-     title: 'vanillacake',
-     author: 'vanillacake',
+     img: './img/plain chacolate bread.jpg',
+     title: 'Choclolate Bread',
+     author: 'plain chacolate bread',
    },
    {
-     img: './img/coffeechocolatecake.jpg',
-     title: 'coffeechocolatecake',
-     author: 'coffeechocolatecake',
+     img: './img/plain bread.jpg',
+     title: 'Wheat Bread',
+     author: 'plain bread',
    },
-   {
-     img: './img/angelfoodcake.jpg',
-     title: 'angelfoodcake',
-     author: 'angelfoodcake',
-   }
  ];
 
 class HorizontalGridList extends React.Component{
@@ -52,7 +52,7 @@ class HorizontalGridList extends React.Component{
     super(props);
     this.state={
       notifyDefaultCakeSelection: true,
-      selectedCake:tileData[0]['title']
+      selectedCake:tileData[0]['author']
     }
     this.onCakeChanged = this.onCakeChanged.bind(this);
   }
@@ -92,9 +92,9 @@ class HorizontalGridList extends React.Component{
                 }}
                 actionIcon={
                   <IconButton onClick={this.onCakeChanged}>
-                  {this.state.selectedCake === tile.title ?
-                    <input type="radio" name="cakeSelect" value={tile.title} checked="checked" /> :
-                    <input type="radio" name="cakeSelect" value={tile.title} />
+                  {this.state.selectedCake === tile.author ?
+                    <input type="radio" name="cakeSelect" value={tile.author} checked="checked" /> :
+                    <input type="radio" name="cakeSelect" value={tile.author} />
                   }
                   </IconButton>
                 }

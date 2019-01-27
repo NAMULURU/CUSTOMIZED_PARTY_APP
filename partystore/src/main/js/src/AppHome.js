@@ -77,7 +77,7 @@ class AppHome extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      selectedKey:"CAKE",
+      selectedKey:"T_SHIRT",
       cartNumber: 0,
       customCartItemObject: {
         category:'',
@@ -224,13 +224,13 @@ class AppHome extends React.Component {
         >
           <div className={classes.toolbar} />
           <List>
+          <ListItem selected={this.state.selectedKey === "T_SHIRT"} onClick = {event => this.handleListItemClick(event, "T_SHIRT")} button key="T_SHIRT">
+            <ListItemIcon><i className="fa fa-snowflake-o fa-lg"></i></ListItemIcon>
+            <ListItemText primary="T Shirt" />
+          </ListItem>
             <ListItem selected={this.state.selectedKey === "CAKE"} onClick = {event => this.handleListItemClick(event, "CAKE")} button key="CAKE">
               <ListItemIcon><i className="fa fa-birthday-cake fa-lg"></i></ListItemIcon>
               <ListItemText primary="Cake" />
-            </ListItem>
-            <ListItem selected={this.state.selectedKey === "T_SHIRT"} onClick = {event => this.handleListItemClick(event, "T_SHIRT")} button key="T_SHIRT">
-              <ListItemIcon><i className="fa fa-snowflake-o fa-lg"></i></ListItemIcon>
-              <ListItemText primary="T Shirt" />
             </ListItem>
             <ListItem button key="DRINK" selected={this.state.selectedKey === "DRINK"} onClick = {event => this.handleListItemClick(event, "DRINK")}>
               <ListItemIcon><i className="fa fa-glass fa-lg"></i></ListItemIcon>
