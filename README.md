@@ -25,8 +25,7 @@ Current application deals with the customization of T Shirts and Cakes. Fulture 
 
 ## Customized Views   
 
-![picture](https://bitbucket.org/SivakumarVayyeti/customized-party-store/raw/7ef7bbf7e0b33fc2310af4bc72af4c03929a6e53/partystore/Screenshots/tshirt_2.png)
-![picture](https://bitbucket.org/SivakumarVayyeti/customized-party-store/raw/7ef7bbf7e0b33fc2310af4bc72af4c03929a6e53/partystore/Screenshots/tshirt_3.png)
+![picture](https://bitbucket.org/SivakumarVayyeti/customized-party-store/raw/7ef7bbf7e0b33fc2310af4bc72af4c03929a6e53/partystore/Screenshots/tshirt_2.png) ![picture](https://bitbucket.org/SivakumarVayyeti/customized-party-store/raw/7ef7bbf7e0b33fc2310af4bc72af4c03929a6e53/partystore/Screenshots/tshirt_3.png)
 ![picture](https://bitbucket.org/SivakumarVayyeti/customized-party-store/raw/7ef7bbf7e0b33fc2310af4bc72af4c03929a6e53/partystore/Screenshots/tshirt_4.png)
 ## 2. Cake Module
 --------------   
