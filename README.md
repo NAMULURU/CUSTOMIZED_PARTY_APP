@@ -1,6 +1,6 @@
 # CUSTOMIZED PARTY STORE  
 ------------
-This Web Application aims to provide users with customized experience while buying the party related stuff along with the default items.   
+This Web Application aims to provide users with customized experience while buying the party related stuff along with the default items 
 Current application deals with the customization of T Shirts and Cakes. Fulture development includes customization of drinks.   
    
 # Technology Stack
